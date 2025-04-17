@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-04-2025 a las 05:32:06
+-- Tiempo de generación: 17-04-2025 a las 06:01:39
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -24,6 +24,38 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `cache`
+--
+
+CREATE TABLE `cache` (
+  `key` varchar(255) NOT NULL,
+  `value` mediumtext NOT NULL,
+  `expiration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('laravel_cache_walteralarcon202@gmail.com|127.0.0.1', 'i:1;', 1744861139),
+('laravel_cache_walteralarcon202@gmail.com|127.0.0.1:timer', 'i:1744861139;', 1744861139);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cache_locks`
+--
+
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) NOT NULL,
+  `owner` varchar(255) NOT NULL,
+  `expiration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `empleados`
 --
 
@@ -34,8 +66,8 @@ CREATE TABLE `empleados` (
   `apellido2` varchar(255) NOT NULL,
   `correo` varchar(255) NOT NULL,
   `foto` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp()
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -43,10 +75,59 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`id`, `nombre`, `apellido1`, `apellido2`, `correo`, `foto`, `created_at`, `updated_at`) VALUES
-(16, '3k', '4', '5', '667777@jj', 'uploads/hFyXcGwomUdGlTWhqbMyc7vSxhMTCOWUClHy7uLC.png', '2025-04-14 20:56:57', '2025-04-15 10:01:33'),
-(20, 'ee', 'egfdg', 'dfgfdg', 'dfgdfg', 'uploads/A6OMCV0BdxjlLlML8c97ReOBgaXuH2j8sOOgljBT.png', '2025-04-15 03:59:10', '2025-04-15 03:59:10'),
-(21, 'wwwww', 'gtregr', 'rgtrg', 'grgrtg', 'uploads/PUW04c4G3djs2jPuU3fgDQV9dhRGPdEDOmW5m4rr.png', '2025-04-15 04:02:17', '2025-04-15 04:02:17'),
-(22, 'ddf', 'fef', 'efe', 'efefe@efef', 'uploads/JGFTSdgAPhjzhkPfp7cI6ddkXVWZzjqbUvpmMokw.png', '2025-04-15 04:26:32', '2025-04-15 04:26:32');
+(1, 'ddd', 'ddd', 'ssss', 'w@gmail.com', 'uploads/SLwY1oWJYr0nVQYZfAux1hg8O9Kj5drV2Ns822Ff.png', NULL, NULL),
+(2, 'walter 45', 'okk', 'kjljl', 'w@gmail.com', 'uploads/XUtezUqiGG2p9XkIuR0rRIvemDvZSy47EEwtU0ta.jpg', NULL, '2025-04-17 08:39:05');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `queue` varchar(255) NOT NULL,
+  `payload` longtext NOT NULL,
+  `attempts` tinyint(3) UNSIGNED NOT NULL,
+  `reserved_at` int(10) UNSIGNED DEFAULT NULL,
+  `available_at` int(10) UNSIGNED NOT NULL,
+  `created_at` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `job_batches`
+--
+
+CREATE TABLE `job_batches` (
+  `id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `total_jobs` int(11) NOT NULL,
+  `pending_jobs` int(11) NOT NULL,
+  `failed_jobs` int(11) NOT NULL,
+  `failed_job_ids` longtext NOT NULL,
+  `options` mediumtext DEFAULT NULL,
+  `cancelled_at` int(11) DEFAULT NULL,
+  `created_at` int(11) NOT NULL,
+  `finished_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -65,10 +146,22 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(9, '0001_01_01_000000_create_users_table', 1),
-(10, '0001_01_01_000001_create_cache_table', 1),
-(11, '0001_01_01_000002_create_jobs_table', 1),
-(12, '2025_04_06_020125_create_empleados_table', 1);
+(17, '0001_01_01_000000_create_users_table', 1),
+(18, '0001_01_01_000001_create_cache_table', 1),
+(19, '0001_01_01_000002_create_jobs_table', 1),
+(20, '2025_04_06_020125_create_empleados_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -90,10 +183,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('4mBA3q5kkggRSx6Zp3nCSLQvfZevChrlVaqTW90s', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoibGZQMU1CelVIemZEc2Z4UHpCS0h3TGlManhOOUY1YnRNMTV5QnVNRyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM1OiJodHRwOi8vMTI3LjAuMC4xL2NydWQvcHVibGljP3BhZ2U9MiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJhdXRoIjthOjE6e3M6MjE6InBhc3N3b3JkX2NvbmZpcm1lZF9hdCI7aToxNzQ0NjkzMzI0O319', 1744693347),
-('nTO8KIA1Xq4q2Ge6RwvUHMDB4ioPOu9snU0axZcO', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVFZOVTFDN0xxT3BUNWZJWHJLSUIxWkpVSjVnUDBIQmF3Nm9SUDlvRSI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM1OiJodHRwOi8vMTI3LjAuMC4xL2NydWQvcHVibGljP3BhZ2U9MSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJhdXRoIjthOjE6e3M6MjE6InBhc3N3b3JkX2NvbmZpcm1lZF9hdCI7aToxNzQ0NzcyNTA4O319', 1744772522),
-('P9Rv1Jz3IpxDXAA87ByizkiS9fe7zHnt9tAtzfKc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUUx6SDZYNWV0NzZCRUt5MWp2NE1oT2RSdEd5VUE1TE1wb05GNkQ5WCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNToiaHR0cDovLzEyNy4wLjAuMS9jcnVkL3B1YmxpYz9wYWdlPTIiO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNToiaHR0cDovLzEyNy4wLjAuMS9jcnVkL3B1YmxpYz9wYWdlPTIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1744772494),
-('XyuYeQ1gkcAJGBdO6BAMVfvaKbz8dAG5XUTe6n85', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVk5PcHZpbWtLZ3ZnaTBXcm9KUmV3QU9Bb25XREszd3F5Z0tzaTFwSiI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNToiaHR0cDovLzEyNy4wLjAuMS9jcnVkL3B1YmxpYz9wYWdlPTEiO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozNToiaHR0cDovLzEyNy4wLjAuMS9jcnVkL3B1YmxpYz9wYWdlPTEiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1744772494);
+('9tdZqT3jByP9649CkYloE3Uin6aPDIJ2zlD1ZO2w', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiTVUyZWRlajZERGdvRUlLMHFHZ0hKT0t5MnBnOTRMNDBJRU5PQ2JlUyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM3OiJodHRwOi8vMTI3LjAuMC4xL2NydWQvcHVibGljL2VtcGxlYWRvIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6ImF1dGgiO2E6MTp7czoyMToicGFzc3dvcmRfY29uZmlybWVkX2F0IjtpOjE3NDQ4NjExNzY7fX0=', 1744861176);
 
 -- --------------------------------------------------------
 
@@ -117,11 +207,23 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'walter', 'walarcon95@hotmail.com', NULL, '$2y$12$h/rRBfOXRlb5JVTqwYwZJOoHZIMTcXPxtYy1YJVl2WsOYS34FKR2m', 'hsegdC2kCti7XO15DFpMYTRuvcsVZV9OnruXghtEK3oaVAW7AYhw00Wn9Jpo', '2025-04-15 02:59:32', '2025-04-15 02:59:32');
+(1, 'walter', 'walarcon95@hotmail.com', NULL, '$2y$12$TGiSvug43ufljxJpcfc6wehUO72mVtdi6vryW2jGuw1QKuOqMnbd6', NULL, '2025-04-17 08:09:43', '2025-04-17 08:09:43');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `cache`
+--
+ALTER TABLE `cache`
+  ADD PRIMARY KEY (`key`);
+
+--
+-- Indices de la tabla `cache_locks`
+--
+ALTER TABLE `cache_locks`
+  ADD PRIMARY KEY (`key`);
 
 --
 -- Indices de la tabla `empleados`
@@ -130,10 +232,36 @@ ALTER TABLE `empleados`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indices de la tabla `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
+
+--
+-- Indices de la tabla `job_batches`
+--
+ALTER TABLE `job_batches`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
 
 --
 -- Indices de la tabla `sessions`
@@ -158,13 +286,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

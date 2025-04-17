@@ -15,9 +15,17 @@ Route::get('/', function () {
 //Route::get('/empleado/create', [EmpleadoController::class, 'create'])->name('empleado.create');
 
 Route::resource('empleado', EmpleadoController::class)->middleware('auth');
-Auth::routes(['register'=> false, 'reset'=>false]);
+Auth::routes(['register'=> false, 'reset'=>false]); 
 
 Route::get('/home', [EmpleadoController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [EmpleadoController::class, 'index'])->name('home');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
